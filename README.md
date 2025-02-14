@@ -1,6 +1,16 @@
 # IR-Spectroscopy-Py-Reader
 
-### **Infrared Spectroscopy Spectrum Python Reader (4000 cm⁻¹ to 400 cm⁻¹)**  
+Current Development Status
+🚧 This project is still under modification! 🚧
+
+Missing Features:
+Currently, the script does not yet define peak strength (intensity levels).
+It also does not display all possible functional groups associated with a given peak.
+Upcoming Improvements:
+I am working on adding peak intensity calculations to classify peaks as strong, medium, or weak.
+A functional group database will be integrated to provide multiple possible functional groups for each detected peak.###
+
+**Infrared Spectroscopy Spectrum Python Reader (4000 cm⁻¹ to 400 cm⁻¹)**  
 
 This Python script processes and identifies peaks in an **Infrared (IR) spectroscopy spectrum image** within the range of **4000 cm⁻¹ to 400 cm⁻¹**. It helps analyze IR spectra by calibrating wave numbers and detecting peaks accurately.  
 
