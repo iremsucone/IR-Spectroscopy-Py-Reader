@@ -1,41 +1,53 @@
-# IR-Spectroscopy-Py-Reader
 
-Current Development Status
-🚧 This project is still under modification! 🚧
+---
 
-Missing Features:
-Currently, the script does not yet define peak strength (intensity levels).
-It also does not display all possible functional groups associated with a given peak.
-Upcoming Improvements:
-I am working on adding peak intensity calculations to classify peaks as strong, medium, or weak.
-A functional group database will be integrated to provide multiple possible functional groups for each detected peak.###
+# **IR-Spectroscopy-Py-Reader** 🔬  
 
-**Infrared Spectroscopy Spectrum Python Reader (4000 cm⁻¹ to 400 cm⁻¹)**  
+A **Python-based infrared (IR) spectroscopy spectrum reader** for analyzing spectral data between **4000 cm⁻¹ and 400 cm⁻¹**. This tool calibrates peak positions and assists in identifying functional groups from an IR spectrum image.  
 
-This Python script processes and identifies peaks in an **Infrared (IR) spectroscopy spectrum image** within the range of **4000 cm⁻¹ to 400 cm⁻¹**. It helps analyze IR spectra by calibrating wave numbers and detecting peaks accurately.  
+---
 
-### **How to Use:**  
+## **🚧 Development Status**
+**This project is under active development.** Current version supports peak detection but lacks peak intensity classification and multiple functional group identification.  
 
-1. **Setup:**  
-   - Download the folder and **delete** the provided example spectrum.  
-   - Replace it with your own spectrum image, ensuring it is named **exactly** as `spectrum.jpg`.  
+### **⚠️ Missing Features:**  
+- **Peak Strength Detection** – Does not yet classify peaks as strong, medium, or weak.  
+- **Comprehensive Functional Group Identification** – Limited to detecting **one** functional group per peak.  
 
-2. **Running the Script:**  
-   - Launch the script.  
-   - You will be prompted to **define** key wave numbers (4000, 3000, 2000, 1500, 1000, 600 cm⁻¹) directly on the image.  
-   - This step calibrates the distances for accurate peak detection.  
+### **🔄 Upcoming Improvements:**  
+- **Peak Intensity Analysis** – Implementing peak classification based on relative strength.  
+- **Expanded Functional Group Database** – Support for multiple possible functional groups at a given wavenumber.  
 
-3. **Peak Identification:**  
-   - Once calibration is complete, you can begin analyzing and identifying peaks.  
+---
 
-4. **Exit the Program:**  
-   - Use **Ctrl + C** to exit the script safely.  
+## **📖 Usage Guide**  
 
-### **License - GNU Affero General Public License v3.0 (AGPL-3.0)**  
+### **1️⃣ Setup**  
+1. Download the repository.  
+2. **Remove the provided sample spectrum**.  
+3. Add your own **IR spectrum image** and name it **`spectrum.jpg`**.  
 
-This project is licensed under the **GNU AGPL-3.0**, meaning:  
-- You are **free to use, modify, and distribute** the software.  
-- If you modify and deploy it as a service, you must **also release your modifications under AGPL-3.0**.  
-- The full terms can be found in the [LICENSE](LICENSE) file.  
+### **2️⃣ Running the Script**  
+1. Execute the script.  
+2. When prompted, **click on the image to define key reference points** at:  
+   - **4000 cm⁻¹, 3000 cm⁻¹, 2000 cm⁻¹, 1500 cm⁻¹, 1000 cm⁻¹, 600 cm⁻¹**.  
+3. This step calibrates distances for more accurate peak detection.  
 
-This ensures that all derivative works remain open-source and accessible to the community.
+### **3️⃣ Peak Identification**  
+- Click on peaks to identify them.  
+- The program will return the corresponding **functional group** based on wavenumber.  
+
+### **4️⃣ Exit**  
+To close the program, press **Ctrl + C**.  
+
+---
+
+## **📜 License**  
+
+**Licensed under GNU Affero General Public License v3.0 (AGPL-3.0).**  
+- Free to **use, modify, and distribute** under the same license.  
+- If modified and deployed as a service, **must be released under AGPL-3.0**.  
+- See the **[LICENSE](LICENSE)** file for details.  
+
+---
+
