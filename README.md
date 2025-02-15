@@ -1,6 +1,6 @@
 # **IR-Spectroscopy-Py-Reader** 🔬  
 
-A **Python-based infrared (IR) spectroscopy spectrum reader** that processes spectral data from **4000 cm⁻¹ to 400 cm⁻¹**. This tool helps identify IR peaks by calibrating wave numbers and detecting functional groups from an IR spectrum image.  
+A **Python-based infrared (IR) spectroscopy spectrum reader** that processes spectral data from **4000 cm⁻¹ to 400 cm⁻¹**. This tool helps identify IR peaks by calibrating wave numbers and detecting functional groups from an IR spectrum image, **without internet** !
 
 ---
 
@@ -20,18 +20,18 @@ This project is still under modification ! It works, but it’s not perfect yet.
 ## 📖 **How to Use**  
 
 ### 1️⃣ **Setup**  
-1. Download the folder.  
-2. **Delete the provided spectrum example** and replace it with your own spectrum image.  
-3. Make sure your file is named **exactly** as `spectrum.jpg`.  
+- Download the folder.  
+- **Delete the provided spectrum example** and replace it with your own spectrum image.  
+- Make sure your file is named **exactly** as `spectrum.jpg`. (It has to be jpg, not jpeg, not png etc.) 
 
 ### 2️⃣ **Running the Script**  
-1. Launch the script.  
-2. Define key **wave numbers** by clicking on the image:  
+- Launch the script within the folder using Command Prompt or Windows Terminal.  
+- Define key **wave numbers** by clicking on the x-axis on the image:  
    - **4000 cm⁻¹, 3000 cm⁻¹, 2000 cm⁻¹, 1500 cm⁻¹, 1000 cm⁻¹, 600 cm⁻¹**.  
-3. The program will use these points to **calibrate distances** and improve peak detection accuracy.  
+- The program will use these points to **calibrate distances** and improve peak detection accuracy.  
 
 ### 3️⃣ **Peak Identification**  
-- Click on peaks to analyze them.  
+- Click on strong and medium peaks to analyze them - or on the peaks that seem really important.  
 - The script will return the **functional group** based on the wavenumber.  
 
 ### 4️⃣ **Exit**  
