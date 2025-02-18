@@ -1,6 +1,6 @@
 # **IR-Spectroscopy-Py-Reader** 🔬  
 
-A **Python-based infrared (IR) spectroscopy spectrum reader** that processes spectral data from **4000 cm⁻¹ to 400 cm⁻¹**. This tool helps identify IR peaks by calibrating wave numbers and detecting functional groups from an IR spectrum image, **without internet** !
+A simple **Python-based infrared (IR) spectroscopy spectrum reader** that processes spectral data from **4000 cm⁻¹ to 400 cm⁻¹**. This tool helps identify IR peaks by calibrating wave numbers and detecting functional groups from an IR spectrum image, **without internet** !
 
 ---
 
