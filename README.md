@@ -39,14 +39,4 @@ To exit the program, press **Ctrl + C**.
 
 ---
 
-## 📜 **License - GNU AGPL-3.0**  
-
-This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.  
-- You are **free to use, modify, and share** the software.  
-- If you modify and deploy it as a service, **you must release your modifications** under the same AGPL-3.0 license.  
-- See the **[LICENSE](LICENSE)** file for full details.  
-
-This ensures the project stays **open-source and accessible** to everyone.  
-
----
   
