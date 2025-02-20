@@ -9,7 +9,7 @@ This project is still under modification ! It works, but it’s not perfect yet.
 
 ###  **Missing Features:**  
 ❌ **Peak strength detection** – The script doesn’t yet classify peaks as **strong, medium, or weak**.  
-❌ **Full functional group identification** – Right now, at **3300 cm⁻¹**, for example, it might suggest **either** an alcohol **or** an alkyne stretch, but not both at the same time.  
+❌ **Full functional group identification** – Right now, it doesn't identify the end product.  
   
 
 ---
