@@ -2,7 +2,7 @@
 
 A simple **Python-based infrared (IR) spectroscopy spectrum reader** that processes spectral data from **4000 cm⁻¹ to 400 cm⁻¹**. This tool helps identify IR peaks by calibrating wave numbers and detecting functional groups from an IR spectrum image, **without internet** !
 
----
+
 
 ## **Current Development Status** 
 This project is still under modification ! It works, but it’s not perfect yet.  
@@ -10,14 +10,11 @@ This project is still under modification ! It works, but it’s not perfect yet.
 ###  **Missing Features:**  
 ❌ **Peak strength detection** – The script doesn’t yet classify peaks as **strong, medium, or weak**.  
 ❌ **Full functional group identification** – Right now, at **3300 cm⁻¹**, for example, it might suggest **either** an alcohol **or** an alkyne stretch, but not both at the same time.  
-
-###  **What’s Coming Next?**  
-**Peak intensity detection** – Peaks will soon be categorized by strength.  
-**Expanded functional group database** – The program will identify **all** possible functional groups for each peak instead of just one.  
+  
 
 ---
 
-## 📖 **How to Use**  
+## **User Guide**  
 
 ### 1️⃣ **Setup**  
 - Download the folder.  
