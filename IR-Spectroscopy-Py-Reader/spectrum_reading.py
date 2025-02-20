@@ -2,15 +2,18 @@ import cv2
 import numpy as np
 from scipy.signal import find_peaks
 
-# Wavenumber reference points
-REFERENCE_WAVENUMBERS = [4000, 3000, 2000, 1500, 1000, 600]  # User-defined calibration points
-selected_pixels = []  # Stores user-selected pixel positions
+# Wavenumber reference points (calibration points)
+REFERENCE_WAVENUMBERS = [4000, 3000, 2000, 1500, 1000, 600]
+selected_pixels = []  # Stores user-selected calibration pixel positions
+
+# Global list to store peak information: (pixel position, wavenumber, [functional group possibilities])
+peaks_info = []
 
 # Load the IR spectrum image
 image = cv2.imread("spectrum.jpg", cv2.IMREAD_GRAYSCALE)  # Update with your image path
 clone = image.copy()
 
-# Functional group identification ranges
+# Functional group identification ranges (each tuple: (upper_bound, lower_bound, description))
 FUNCTIONAL_GROUPS = [
     (3700, 3584, "O-H stretching (Alcohol, Free)"),
     (3550, 3200, "O-H stretching (Alcohol, Intermolecular Bonded)"),
@@ -50,27 +53,25 @@ FUNCTIONAL_GROUPS = [
 def adjust_wavenumber_mapping():
     if len(selected_pixels) != len(REFERENCE_WAVENUMBERS):
         print("Error: Not enough calibration points selected.")
-        return lambda x: 4000 - (3600 * (x / image.shape[1]))  # Default linear function
-    
+        return lambda x: 4000 - (3600 * (x / image.shape[1]))  # Default linear mapping
+
     # Compute pixel distances between selected calibration points
     pixel_differences = np.diff(selected_pixels)
     wavenumber_differences = np.diff(REFERENCE_WAVENUMBERS)
-    
     # Compute correction factors for each segment
     correction_factors = wavenumber_differences / pixel_differences
-    
-    # Create a function that adjusts the mapping
+
+    # Create a function that adjusts the mapping for any x position
     def corrected_mapping(x):
         for i in range(len(selected_pixels) - 1):
             if selected_pixels[i] <= x < selected_pixels[i + 1]:
                 return REFERENCE_WAVENUMBERS[i] - (selected_pixels[i] - x) * correction_factors[i]
         return 4000 - (3600 * (x / image.shape[1]))  # Default fallback
-    
     return corrected_mapping
 
-# Step 1: User defines wavenumber scale
+# Step 1: Calibration - User selects wavenumber reference points
 def select_wavenumber(event, x, y, flags, param):
-    global selected_pixels
+    global selected_pixels, pixel_to_wavenumber_function
     if event == cv2.EVENT_LBUTTONDOWN and len(selected_pixels) < len(REFERENCE_WAVENUMBERS):
         selected_pixels.append(x)
         print(f"Selected {REFERENCE_WAVENUMBERS[len(selected_pixels) - 1]} cm⁻¹ at pixel {x}")
@@ -78,20 +79,38 @@ def select_wavenumber(event, x, y, flags, param):
         # Draw a marker at the selected point
         cv2.circle(image, (x, y), 5, (255, 255, 255), -1)
 
-        # If all points are selected, finalize mapping
+        # When all calibration points are selected, set up the mapping function
         if len(selected_pixels) == len(REFERENCE_WAVENUMBERS):
-            global pixel_to_wavenumber_function
             pixel_to_wavenumber_function = adjust_wavenumber_mapping()
             print("Calibration completed. Now click on peaks.")
 
-# Step 2: Click on peaks to identify functional groups
+# Step 2: Identify peaks - On click, determine wavenumber and list all matching functional groups
 def identify_peak_on_click(event, x, y, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN and len(selected_pixels) == len(REFERENCE_WAVENUMBERS):
         wavenumber = pixel_to_wavenumber_function(x)
-        functional_group = next((fg[2] for fg in FUNCTIONAL_GROUPS if fg[0] >= wavenumber >= fg[1]), "Unknown Functional Group")
-        print(f"Clicked Peak: {wavenumber:.1f} cm⁻¹ - {functional_group}")
-        cv2.putText(image, f"{int(wavenumber)} cm⁻1 ({functional_group})", (x, y), 
+        # Collect all matching functional groups
+        matches = [fg[2] for fg in FUNCTIONAL_GROUPS if fg[0] >= wavenumber >= fg[1]]
+        if not matches:
+            matches = ["Unknown Functional Group"]
+        print(f"Clicked Peak: {wavenumber:.1f} cm⁻¹ -> {', '.join(matches)}")
+        # Annotate the image with the peak information
+        cv2.putText(image, f"{int(wavenumber)} cm⁻1", (x, y),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1)
+        # Store the peak data
+        peaks_info.append((x, wavenumber, matches))
+
+# Final summary: Print all peaks and overall functional groups identified
+def final_results():
+    if not peaks_info:
+        print("No peaks were selected.")
+        return
+    print("\nFinal Results:")
+    overall_functions = set()
+    for idx, (x, wn, funcs) in enumerate(peaks_info, 1):
+        print(f"Peak {idx}: {wn:.1f} cm⁻¹ -> {', '.join(funcs)}")
+        overall_functions.update(funcs)
+    print("\nOverall possible functional groups identified:")
+    print(", ".join(overall_functions))
 
 # Step 3: Start interactive calibration
 print("Step 1: Click on 4000, 3000, 2000, 1500, 1000, and 600 cm⁻¹ in order.")
@@ -105,7 +124,7 @@ while len(selected_pixels) < len(REFERENCE_WAVENUMBERS):
         cv2.destroyAllWindows()
         exit()
 
-# Step 4: Click to identify peaks
+# Step 4: Click to identify peaks (after calibration is done)
 cv2.setMouseCallback("IR Spectrum", identify_peak_on_click)
 print("Step 2: Click on peaks to identify wavenumbers and functional groups.")
 
@@ -116,3 +135,6 @@ while True:
         break
 
 cv2.destroyAllWindows()
+
+# Output the final summary results to the console
+final_results()
