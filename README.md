@@ -4,7 +4,7 @@ A simple **Python-based infrared (IR) spectroscopy spectrum reader** that proces
 
 ---
 
-## 🚧 **Current Development Status** 🚧  
+## **Current Development Status** 
 This project is still under modification ! It works, but it’s not perfect yet.  
 
 ###  **Missing Features:**  
